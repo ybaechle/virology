@@ -90,7 +90,7 @@ pub struct Store {
 impl Store {
     pub fn open(path: &Path) -> Result<Self> {
         let db = Connection::open(path).context("ouverture de la base de données")?;
-        db.execute_batch("PRAGMA journal_mode=WAL; PRAGMA busy_timeout=5000;")?;
+        db.execute_batch("PRAGMA journal_mode=WAL; PRAGMA busy_timeout=5000; PRAGMA foreign_keys=ON;")?;
         db.execute_batch(SCHEMA)?;
         Ok(Self { db })
     }
