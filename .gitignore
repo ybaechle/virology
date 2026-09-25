@@ -1,0 +1,6 @@
+/target/
+*.db
+*.db-wal
+*.db-shm
+payload.bin
+certs/server.key

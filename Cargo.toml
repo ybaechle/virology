@@ -1,0 +1,13 @@
+[workspace]
+members = ["controller", "implant", "loader"]
+resolver = "2"
+
+[profile.release]
+opt-level     = 3
+strip         = true
+lto           = true
+codegen-units = 1
+panic         = "abort"
+
+[profile.release.package.loader]
+opt-level = "z"
