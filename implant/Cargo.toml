@@ -1,0 +1,39 @@
+[package]
+name = "implant"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "implant"
+path = "src/main.rs"
+
+[dependencies]
+aes-gcm   = "0.10"
+rsa       = { version = "0.9", features = ["sha2", "pem"] }
+rand      = "0.8"
+sha2      = "0.10"
+md-5      = "0.10"
+base64    = "0.22"
+serde_json = "1"
+anyhow    = "1"
+hex       = "0.4"
+rustls    = { version = "0.22", features = ["ring"] }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.52", features = [
+    "Win32_Foundation",
+    "Win32_System_Diagnostics_Debug",
+    "Win32_System_Diagnostics_ToolHelp",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Memory",
+    "Win32_System_SystemInformation",
+    "Win32_Security",
+    "Win32_System_Registry",
+    "Win32_System_Threading",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_UI_Shell",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_Graphics_Gdi",
+    "Win32_NetworkManagement_IpHelper",
+    "Win32_NetworkManagement_Ndis",
+] }
